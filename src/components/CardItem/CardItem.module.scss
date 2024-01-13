@@ -83,26 +83,26 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  svg {
+  svg path{
     fill: #fff;
   }
   @media (hover: hover) {
     &:hover {
       color: #9200b7;
-      svg {
+      svg path{
         fill: #9200b7;
       }
     }
   }
   &_active {
     color: #9200b7;
-    svg {
+    svg path{
       fill: #9200b7;
     }
   }
   &:active {
     color: #c0f;
-    svg {
+    svg path{
       fill: #c0f;
     }
   }
