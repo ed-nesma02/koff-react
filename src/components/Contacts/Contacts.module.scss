@@ -1,0 +1,16 @@
+.contacts {
+  @media (min-width: 580px) {
+    grid-column: 2/3;
+    justify-self: end;
+  }
+}
+.phone {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.list {
+  display: flex;
+  gap: 8px;
+}

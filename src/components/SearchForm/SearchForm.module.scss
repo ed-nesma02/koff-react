@@ -1,0 +1,39 @@
+.form {
+  height: 100%;  
+}
+
+.input {
+  width: 100%;
+  height: 100%;
+  padding: 0 40px 0 24px;
+  border-radius: 32px;
+  background:  #EEEFF2;
+  border: none;
+  &::placeholder {
+    color:#969EAE;
+  }
+  &:focus-visible,
+  &:hover {
+    outline: 1px solid #DFE3EB;
+  }
+}
+
+.button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 24px;
+  border-radius: 4px;
+  outline-offset: 4px;
+  outline: 1px solid transparent;
+
+  &:hover,
+  &:active {
+    color: #780096;
+  }
+
+  &:focus-visible {
+    color: #780096;
+    outline-color: #780096;
+  }
+}

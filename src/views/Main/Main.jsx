@@ -1,7 +1,9 @@
-import { Container } from "../Container/Container";
+import { Catalog } from "../../components/Catalog/Catalog";
+import { Goods } from "../../components/Goods/Goods";
 
 export const Main = () => (
   <main>
-    <Container>Main</Container>
+    <Catalog />
+    <Goods />
   </main>
 );

@@ -1,0 +1,40 @@
+.navigation {
+  grid-area: navigation;
+  justify-self: end;
+  display: flex;
+  gap: 16px;
+}
+.link {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 4px;
+
+  svg {
+    fill: #fff;
+  }
+
+  &:hover,
+  &:active {
+    color: #780096;
+    svg {
+      fill: #780096;
+    }
+  }
+
+  &:focus-visible {
+    color: #780096;
+    outline-color: #780096;
+  }
+
+  @media (min-width: 580px) {
+    flex-direction: row;
+  }
+}
+
+.linkText {
+  display: none;
+  @media (min-width: 580px) {
+    display: block;
+  }
+}

@@ -1,12 +1,12 @@
 import { Logo } from "../../components/Logo/Logo";
 import { Container } from "../Container/Container";
-import { Contacts } from "./Contacts/Contacts";
-import { Copyright } from "./Copyright/Copyright";
-import { DeveloperList } from "./DeveloperList/DeveloperList";
 import s from "./Footer.module.scss";
+import { Contacts } from "../../components/Contacts/Contacts";
+import { DeveloperList } from "../../components/DeveloperList/DeveloperList";
+import { Copyright } from "../../components/Copyright/Copyright";
 
 export const Footer = () => (
-  <footer>
+  <footer className={s.footer}>
     <Container className={s.footerContainer}>
       <div className={s.footerLogo}>
         <Logo />

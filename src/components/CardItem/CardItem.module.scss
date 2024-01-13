@@ -1,0 +1,116 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.link {
+  &Img {
+    margin-bottom: 12px;
+    display: block;
+    @media (min-width: 580px) {
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  aspect-ratio: 7/6;
+
+  @media (min-width: 580) {
+    aspect-ratio: 23/20;
+  }
+  @media (min-width: 820) {
+    aspect-ratio: 151/125;
+  }
+}
+
+.info {
+  flex-grow: 1;
+  @media (min-width: 580px) {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    margin-bottom: 20px;
+  }
+}
+
+.title {
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  @media (min-width: 580px) {
+    padding-top: 3px;
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+}
+
+.price {
+  margin-bottom: 14px;
+  @media (min-width: 580px) {
+    font-size: 20px;
+    margin-bottom: 0;
+  }
+}
+
+.btn {
+  width: 100%;
+  padding: 12px 24px;
+  color: #780096;
+  border-radius: 32px;
+  border: 1px solid #780096;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: #fff;
+    background: #9200b7;
+  }
+  &:focus-visible {
+    outline: 1px solid #c0f;
+  }
+  &:disabled {
+    opacity: 0.2;
+    pointer-events: none;
+  }
+}
+
+.favorite {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  svg {
+    fill: #fff;
+  }
+  @media (hover: hover) {
+    &:hover {
+      color: #9200b7;
+      svg {
+        fill: #9200b7;
+      }
+    }
+  }
+  &_active {
+    color: #9200b7;
+    svg {
+      fill: #9200b7;
+    }
+  }
+  &:active {
+    color: #c0f;
+    svg {
+      fill: #c0f;
+    }
+  }
+  &:focus-visible {
+    outline: 1px solid #c0f;
+  }
+  &:disabled {
+    opacity: 0.2;
+    pointer-events: none;
+  }
+}
