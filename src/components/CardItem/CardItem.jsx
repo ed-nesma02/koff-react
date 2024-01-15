@@ -1,22 +1,28 @@
+import { API_URI } from "../../const/API";
 import s from "./CardItem.module.scss";
-import chair from "./photo.jpg";
 import cn from "classnames";
 
-export const CardItem = () => (
+export const CardItem = ({ data }) => (
   <article className={s.card}>
-    <a href="/product/789" className={cn(s.link, s.linkImg)}>
-      <img src={chair} alt="Кресло с подлокотниками" className={s.img} />
+    <a href={`/product/${data.id}`} className={cn(s.link, s.linkImg)}>
+      <img
+        src={`${API_URI}/${data.images[0]}`}
+        alt={data.name}
+        className={s.img}
+      />
     </a>
     <div className={s.info}>
       <h3 className={s.title}>
-        <a href="/product/789" className={s.link}>
-          Кресло с подлокотниками
+        <a href={`/product/${data.id}`} className={s.link}>
+          {data.name}
         </a>
       </h3>
-      <p className={s.price}>5&nbsp;000&nbsp;₽</p>
+      <p className={s.price}>{data.price.toLocaleString()}&nbsp;₽</p>
     </div>
-    <button className={s.btn}>В корзину</button>
-    <button className={s.favorite} aria-label="Лайк">
+    <button className={s.btn} data-id={data.id}>
+      В корзину
+    </button>
+    <button className={s.favorite} aria-label="Лайк" data-id={data.id}>
       <svg
         width="16"
         height="16"
