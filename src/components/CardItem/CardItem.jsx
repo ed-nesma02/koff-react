@@ -1,21 +1,22 @@
+import { Link } from "react-router-dom";
 import { API_URI } from "../../const/API";
 import s from "./CardItem.module.scss";
 import cn from "classnames";
 
 export const CardItem = ({ data }) => (
   <article className={s.card}>
-    <a href={`/product/${data.id}`} className={cn(s.link, s.linkImg)}>
+    <Link to={`/product/${data.id}`} className={cn(s.link, s.linkImg)}>
       <img
         src={`${API_URI}/${data.images[0]}`}
         alt={data.name}
         className={s.img}
       />
-    </a>
+    </Link>
     <div className={s.info}>
       <h3 className={s.title}>
-        <a href={`/product/${data.id}`} className={s.link}>
+        <Link to={`/product/${data.id}`} className={s.link}>
           {data.name}
-        </a>
+        </Link>
       </h3>
       <p className={s.price}>{data.price.toLocaleString()}&nbsp;₽</p>
     </div>

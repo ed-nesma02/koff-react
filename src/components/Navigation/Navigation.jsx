@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 import s from "./Navigation.module.scss";
 
 export const Navigation = () => (
   <nav className={s.navigation}>
-    <a href="/favorite" className={s.link}>
+    <Link to="/favorite" className={s.link}>
       <span className={s.linkText}>Избранное</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -16,8 +17,8 @@ export const Navigation = () => (
           strokeLinejoin="round"
         />
       </svg>
-    </a>
-    <a href="/cart" className={s.link}>
+    </Link>
+    <Link to="/cart" className={s.link}>
       <span className={s.linkText}>Корзина</span>
       <span className={s.count}>{`(0)`}</span>
       <svg
@@ -60,6 +61,6 @@ export const Navigation = () => (
           strokeLinecap="round"
         />
       </svg>
-    </a>
+    </Link>
   </nav>
 );

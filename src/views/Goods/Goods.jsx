@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Container } from "../../views/Container/Container";
-import { CardItem } from "../CardItem/CardItem";
 import s from "./Goods.module.scss";
 import cn from "classnames";
 import { useEffect } from "react";
 import { fetchProducts } from "../../store/products/productsSlice";
+import { Container } from "../Container/Container";
+import { CardItem } from "../../components/CardItem/CardItem";
 
 export const Goods = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export const Goods = () => {
     if (accessToken) {
       dispatch(fetchProducts());
     }
-  }, [dispatch, accessToken]);
+  }, [dispatch]);
 
   return (
     <section className={s.goods}>
