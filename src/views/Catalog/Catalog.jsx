@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Container } from "../Container/Container";
+import { Container } from "../../views/Container/Container";
 import s from "./Catalog.module.scss";
 import { useEffect } from "react";
 import { fetchCategories } from "../../store/categories/categoriesSlice";
@@ -7,26 +7,32 @@ import { Link } from "react-router-dom";
 
 export const Catalog = () => {
   const dispatch = useDispatch();
-  const { categories } = useSelector((state) => state.categories);
+  const { categories, loading } = useSelector((state) => state.categories);
   const { accessToken } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (accessToken) {
       dispatch(fetchCategories());
     }
-  }, [accessToken, dispatch]);
+  }, [dispatch, accessToken]);
 
   return (
     <div className={s.catalog}>
       <Container className={s.container}>
         <ul className={s.list}>
-          {categories?.map((item, i) => (
-            <li key={i} className={s.item}>
-              <Link to={`/category?slug=${item}`} className={s.link}>
-                {item}
-              </Link>
-            </li>
-          ))}
+          {!loading
+            ? categories?.map((item, i) => (
+                <li key={`9${i}`} className={s.item}>
+                  <Link to={`/category?slug=${item}`} className={s.link}>
+                    {item}
+                  </Link>
+                </li>
+              ))
+            : [...new Array(8)].map((_, i) => (
+                <li key={`5${i}`} className={s.item}>
+                  <div className={s.skeleton}></div>
+                </li>
+              ))}
         </ul>
       </Container>
     </div>

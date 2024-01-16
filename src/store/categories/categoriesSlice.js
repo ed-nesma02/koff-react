@@ -25,23 +25,23 @@ const categoriesSlice = createSlice({
   name: "categories",
   initialState: {
     categories: [],
-    loaging: false,
+    loading: false,
     error: null,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchCategories.pending, (state) => {
-        state.loaging = true;
+        state.loading = true;
         state.error = null;
       })
       .addCase(fetchCategories.fulfilled, (state, action) => {
-        state.loaging = false;
+        state.loading = false;
         state.categories = action.payload;
         state.error = null;
       })
       .addCase(fetchCategories.rejected, (state, action) => {
-        state.loaging = false;
+        state.loading = false;
         state.error = action.error.message;
       });
   },

@@ -66,3 +66,39 @@
     pointer-events: none;
   }
 }
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: #f4f4f4;
+  width: 80px;
+  height: 38.8px;
+  border-radius: 32px;
+  outline: none;
+}
+
+.skeleton::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: -150px;
+  top: 0;
+  height: 100%;
+  width: 150px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    #e8e8e8 50%,
+    transparent 100%
+  );
+  animation: load 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes load {
+  0% {
+    left: -150px;
+  }
+  100% {
+    left: 100%;
+  }
+}
