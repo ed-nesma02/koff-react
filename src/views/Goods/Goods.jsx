@@ -15,7 +15,7 @@ export const Goods = () => {
     if (accessToken) {
       dispatch(fetchProducts());
     }
-  }, [dispatch]);
+  }, [accessToken, dispatch]);
 
   return (
     <section className={s.goods}>

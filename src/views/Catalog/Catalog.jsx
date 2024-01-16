@@ -14,7 +14,7 @@ export const Catalog = () => {
     if (accessToken) {
       dispatch(fetchCategories());
     }
-  }, [dispatch]);
+  }, [accessToken, dispatch]);
 
   return (
     <div className={s.catalog}>

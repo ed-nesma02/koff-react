@@ -22,7 +22,7 @@ export const Card = () => {
 
   useEffect(() => {
     dispatch(fetchProduct({ id: productId }));
-  }, [dispatch]);
+  }, [dispatch, productId]);
 
   if (error) {
     return (
