@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { API_URI } from "../../const/API";
+import { removeToken } from "../auth/authSlice";
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
-  async (_, { getState }) => {
+  async (_, { getState, dispatch }) => {
     const token = getState().auth.accessToken;
 
     const response = await fetch(`${API_URI}/api/products`, {
@@ -13,6 +14,9 @@ export const fetchProducts = createAsyncThunk(
     });
 
     if (!response.ok) {
+      if (response.status === 401) {
+        dispatch(removeToken());
+      }
       throw new Error("Не удалось получить товары");
     }
 

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { API_URI } from "../../const/API";
+import { removeToken } from "../auth/authSlice";
 
 export const fetchCategories = createAsyncThunk(
   "categories/fetchCategories",
@@ -14,6 +15,9 @@ export const fetchCategories = createAsyncThunk(
     });
 
     if (!response.ok) {
+      if (response.status === 401) {
+        thunkAPI.dispatch(removeToken());
+      }
       throw new Error("Не удалось получить каталог");
     }
 
