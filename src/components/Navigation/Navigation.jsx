@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import s from "./Navigation.module.scss";
+import { useSelector } from "react-redux";
 
 export const Navigation = () => {
+  const { favoriteList } = useSelector((state) => state.favorite);
   return (
     <nav className={s.navigation}>
       <Link to={`/favorite`} className={s.link}>
@@ -18,10 +20,15 @@ export const Navigation = () => {
             strokeLinejoin="round"
           />
         </svg>
+        {!!favoriteList?.length && (
+          <span className={s.count}>{favoriteList?.length}</span>
+        )}
       </Link>
       <Link to="/cart" className={s.link}>
         <span className={s.linkText}>Корзина</span>
-        <span className={s.count}>{`(0)`}</span>
+        <span className={s.count} style={{ backgroundColor: `#9200b7` }}>
+          1
+        </span>
         <svg
           width="16"
           height="16"
