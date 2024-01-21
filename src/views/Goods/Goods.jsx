@@ -33,27 +33,23 @@ export const Goods = () => {
               ? `Резульаты по запросу: ${search}`
               : `Список товаров`}
         </h2>
-
+        {error && <p>{error}</p>}
+        {!loading && !products?.length && !error && (
+          <p>По вашему запросу ничего не найдено</p>
+        )}
         <ul className={s.list}>
-          {!loading ? (
-            products?.length ? (
+          {!loading
+            ? !!products?.length &&
               products?.map((item) => (
                 <li className={s.item} key={item.id}>
                   <CardItem data={item} />
                 </li>
               ))
-            ) : error ? (
-              <div>{error}</div>
-            ) : (
-              <div> По вашему запросу ничего не найдено</div>
-            )
-          ) : (
-            [...new Array(8)].map((_, i) => (
-              <li className={s.item} key={`5${i}`}>
-                <SkeletonCardItem />
-              </li>
-            ))
-          )}
+            : [...new Array(8)].map((_, i) => (
+                <li className={s.item} key={`5${i}`}>
+                  <SkeletonCardItem />
+                </li>
+              ))}
         </ul>
       </Container>
     </section>
