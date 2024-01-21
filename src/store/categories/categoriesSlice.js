@@ -4,9 +4,8 @@ import { removeToken } from "../auth/authSlice";
 
 export const fetchCategories = createAsyncThunk(
   "categories/fetchCategories",
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const token = state.auth.accessToken;
+  async (_, { getState, dispatch }) => {
+    const token = getState().auth.accessToken;
 
     const response = await fetch(`${API_URI}/api/productCategories`, {
       headers: {
@@ -16,7 +15,7 @@ export const fetchCategories = createAsyncThunk(
 
     if (!response.ok) {
       if (response.status === 401) {
-        thunkAPI.dispatch(removeToken());
+        dispatch(removeToken());
       }
       throw new Error("Не удалось получить каталог");
     }

@@ -23,7 +23,7 @@ export const Catalog = () => {
           {!loading
             ? categories?.map((item, i) => (
                 <li key={`9${i}`} className={s.item}>
-                  <Link to={`/category?slug=${item}`} className={s.link}>
+                  <Link to={`/category?category=${item}`} className={s.link}>
                     {item}
                   </Link>
                 </li>

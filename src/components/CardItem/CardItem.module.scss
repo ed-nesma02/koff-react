@@ -19,6 +19,7 @@
   width: 100%;
   border-radius: 16px;
   aspect-ratio: 7/6;
+  object-fit: cover;
 
   @media (min-width: 580) {
     aspect-ratio: 23/20;
@@ -82,21 +83,12 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  svg path{
-    fill: #fff;
-  }
   @media (hover: hover) {
     &:hover {
       color: #9200b7;
       svg path{
         fill: #9200b7;
       }
-    }
-  }
-  &_active {
-    color: #9200b7;
-    svg path{
-      fill: #9200b7;
     }
   }
   &:active {

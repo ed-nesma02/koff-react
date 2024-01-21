@@ -101,21 +101,12 @@
 .like {
   top: 12px;
   right: 12px;
-  svg path{
-    fill: #fff;
-  }
   @media (hover: hover) {
     &:hover {
       color: #9200b7;
-      svg path{
+      path{
         fill: #9200b7;
       }
-    }
-  }
-  &_active {
-    color: #9200b7;
-    svg path{
-      fill: #9200b7;
     }
   }
   &:active {
