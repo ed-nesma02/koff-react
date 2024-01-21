@@ -30,7 +30,7 @@ export const Goods = () => {
           {category
             ? category
             : search
-              ? `Резульаты по запросу: ${search}`
+              ? `Результаты по запросу: ${search}`
               : `Список товаров`}
         </h2>
         {error && <p>{error}</p>}

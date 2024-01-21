@@ -13,6 +13,8 @@ export const Favorite = () => {
   );
   const { accessToken } = useSelector((state) => state.auth);
 
+  useEffect(() => window.scrollTo(0, 0), []);
+
   useEffect(() => {
     if (accessToken) {
       dispatch(fetchfavorites());
