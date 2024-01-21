@@ -10,7 +10,7 @@ import { useSearchParams } from "react-router-dom";
 
 export const Goods = () => {
   const dispatch = useDispatch();
-  let { products, loading, error } = useSelector((state) => state.products);
+  const { products, loading, error } = useSelector((state) => state.products);
   const { accessToken } = useSelector((state) => state.auth);
   const [searchParam] = useSearchParams();
   const category = searchParam.get("category");
@@ -26,7 +26,13 @@ export const Goods = () => {
   return (
     <section className={s.goods}>
       <Container>
-        <h2 className={cn(s.title, "visually-hidden")}>Список товаров</h2>
+        <h2 className={cn(s.title, !category && !search && "visually-hidden")}>
+          {category
+            ? category
+            : search
+              ? `Резульаты по запросу: ${search}`
+              : `Список товаров`}
+        </h2>
 
         <ul className={s.list}>
           {!loading ? (

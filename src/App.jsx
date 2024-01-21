@@ -9,6 +9,7 @@ import { Goods } from "./views/Goods/Goods";
 import { Cart } from "./views/Cart/Cart";
 import { Card } from "./views/Card/Card";
 import { PageNotFound } from "./components/pageNotFound/pageNotFound";
+import { Favorite } from "./views/Favorite/Favorite";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
         <Header />
         <main>
           <Catalog />
-          <Goods />
+          <Favorite />
         </main>
         <Footer />
       </>

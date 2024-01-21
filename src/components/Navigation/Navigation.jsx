@@ -1,13 +1,10 @@
 import { Link } from "react-router-dom";
 import s from "./Navigation.module.scss";
-import { useSelector } from "react-redux";
 
 export const Navigation = () => {
-  const favoriteList = useSelector((state) => state.favorite.favoriteList);
-
   return (
     <nav className={s.navigation}>
-      <Link to={`/favorite?list=${favoriteList}`} className={s.link}>
+      <Link to={`/favorite`} className={s.link}>
         <span className={s.linkText}>Избранное</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
