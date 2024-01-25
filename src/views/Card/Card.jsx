@@ -12,6 +12,7 @@ import cn from "classnames";
 import { SkeletonCard } from "../../components/SkeletonCard/SkeletonCard";
 import { CardSwiper } from "../../components/CardSwiper/CardSwiper";
 import { FavoriteButton } from "../../components/FavoriteButton/FavoriteButton";
+import { CartButton } from "../../components/CartButton/CartButton";
 
 export const Card = () => {
   const { productId } = useParams();
@@ -62,9 +63,7 @@ export const Card = () => {
             </table>
 
             <div className={s.btns}>
-              <button className={s.btn} type="submit">
-                В корзину
-              </button>
+              <CartButton className={s.btn} id={product.id} />
               <FavoriteButton className={s.like} id={product.id} />
             </div>
           </div>

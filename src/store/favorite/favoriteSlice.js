@@ -5,17 +5,18 @@ import { removeToken } from "../auth/authSlice";
 const initialState = {
   favoriteList: JSON.parse(localStorage.getItem("favorite") || "[]"),
   favoriteProducts: [],
+  pagination: {},
   loading: false,
   error: null,
 };
 
 export const fetchfavorites = createAsyncThunk(
   "favorite/fetchfavorites",
-  async (_, { getState, dispatch }) => {
+  async ({ page }, { getState, dispatch }) => {
     const token = getState().auth.accessToken;
     const searchParams = new URLSearchParams();
     const favoriteList = getState().favorite.favoriteList;
-    const param = { list: favoriteList.join(",") };
+    const param = { list: favoriteList.join(","), page };
 
     if (param) {
       for (const key in param) {
@@ -70,6 +71,7 @@ const favoriteSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.favoriteProducts = action.payload.data;
+        state.pagination = action.payload.pagination;
       })
       .addCase(fetchfavorites.rejected, (state, action) => {
         state.loading = false;

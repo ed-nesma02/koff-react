@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 export const Navigation = () => {
   const { favoriteList } = useSelector((state) => state.favorite);
+  const { totalCount } = useSelector((state) => state.cart);
   return (
     <nav className={s.navigation}>
       <Link to={`/favorite`} className={s.link}>
@@ -27,7 +28,7 @@ export const Navigation = () => {
       <Link to="/cart" className={s.link}>
         <span className={s.linkText}>Корзина</span>
         <span className={s.count} style={{ backgroundColor: `#9200b7` }}>
-          1
+          {totalCount}
         </span>
         <svg
           width="16"

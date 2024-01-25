@@ -3,6 +3,7 @@ import { API_URI } from "../../const/API";
 import s from "./CardItem.module.scss";
 import cn from "classnames";
 import { FavoriteButton } from "../FavoriteButton/FavoriteButton";
+import { CartButton } from "../CartButton/CartButton";
 
 export const CardItem = ({ data }) => (
   <article className={s.card}>
@@ -21,9 +22,7 @@ export const CardItem = ({ data }) => (
       </h3>
       <p className={s.price}>{data.price.toLocaleString()}&nbsp;₽</p>
     </div>
-    <button className={s.btn} data-id={data.id}>
-      В корзину
-    </button>
+    <CartButton className={s.btn} id={data.id} />
     <FavoriteButton className={s.favorite} id={data.id} />
   </article>
 );

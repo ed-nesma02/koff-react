@@ -1,0 +1,39 @@
+
+.productControl {
+  grid-area: control;
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 5px 11px;
+  border-radius: 32px;
+  border: 1px solid #eeeff2;
+
+  @media (min-width: 480px) {
+    align-self: end;
+  }
+}
+
+.productBtn {
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+  border: 1px solid transparent;
+  outline: none;
+
+  &:focus-visible {
+    border-color: #780096;
+  }
+}
+
+.productCount {
+  min-width: 14px;
+  text-align: center;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: default;
+}

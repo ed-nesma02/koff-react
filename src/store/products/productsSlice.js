@@ -47,7 +47,6 @@ const productsSlice = createSlice({
       .addCase(fetchProducts.pending, (state) => {
         state.loading = true;
         state.error = null;
-        state.pagination = null;
         state.products = null;
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {

@@ -7,21 +7,25 @@ import { Container } from "../Container/Container";
 import { CardItem } from "../../components/CardItem/CardItem";
 import { SkeletonCardItem } from "../../components/SkeletonCardItem/SkeletonCardItem";
 import { useSearchParams } from "react-router-dom";
+import { Pagination } from "../../components/Pagination/Pagination";
 
 export const Goods = () => {
   const dispatch = useDispatch();
-  const { products, loading, error } = useSelector((state) => state.products);
+  const { products, loading, error, pagination } = useSelector(
+    (state) => state.products,
+  );
   const { accessToken } = useSelector((state) => state.auth);
   const [searchParam] = useSearchParams();
   const category = searchParam.get("category");
   const search = searchParam.get("search");
   const list = searchParam.get("list");
+  const page = searchParam.get("page");
 
   useEffect(() => {
     if (accessToken) {
-      dispatch(fetchProducts({ category, search, list }));
+      dispatch(fetchProducts({ category, search, list, page }));
     }
-  }, [accessToken, dispatch, category, search, list]);
+  }, [accessToken, dispatch, category, search, list, page]);
 
   return (
     <section className={s.goods}>
@@ -51,6 +55,7 @@ export const Goods = () => {
                 </li>
               ))}
         </ul>
+        {pagination?.totalPages > 1 && <Pagination pagination={pagination} />}
       </Container>
     </section>
   );

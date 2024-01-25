@@ -5,21 +5,25 @@ import { Container } from "../Container/Container";
 import { CardItem } from "../../components/CardItem/CardItem";
 import { SkeletonCardItem } from "../../components/SkeletonCardItem/SkeletonCardItem";
 import { fetchfavorites } from "../../store/favorite/favoriteSlice";
+import { useSearchParams } from "react-router-dom";
+import { Pagination } from "../../components/Pagination/Pagination";
 
 export const Favorite = () => {
   const dispatch = useDispatch();
-  const { favoriteProducts, loading, error } = useSelector(
+  const { favoriteProducts, loading, error, pagination } = useSelector(
     (state) => state.favorite,
   );
   const { accessToken } = useSelector((state) => state.auth);
+  const [searchParam] = useSearchParams();
+  const page = searchParam.get("page");
 
   useEffect(() => window.scrollTo(0, 0), []);
 
   useEffect(() => {
     if (accessToken) {
-      dispatch(fetchfavorites());
+      dispatch(fetchfavorites({ page }));
     }
-  }, [accessToken, dispatch]);
+  }, [accessToken, dispatch, page]);
 
   return (
     <section className={s.goods}>
@@ -43,6 +47,7 @@ export const Favorite = () => {
                 </li>
               ))}
         </ul>
+        {pagination?.totalPages > 1 && <Pagination pagination={pagination} />}
       </Container>
     </section>
   );

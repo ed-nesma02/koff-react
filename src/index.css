@@ -37,7 +37,7 @@ html {
 body {
   position: relative;
   font-family: "Open Sans", sans-serif;
-  font-size: 12px;
+  font-size: 16px;
   color: #1c1c1c;
   line-height: 1.2;
   background-color: #fff;
@@ -58,16 +58,11 @@ main {
   }
 }
 
-@media (min-width: 820px) {
-  body {
-    font-size: 16px;
-  }
-}
-
 img,
 svg {
   display: block;
   height: auto;
+  max-width: 100%;
 }
 
 button {
