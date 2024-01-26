@@ -27,6 +27,31 @@ export const fetchCart = createAsyncThunk(
   },
 );
 
+export const updateCart = createAsyncThunk(
+  "cart/updateCart",
+  async (_, { getState, rejectWithValue, dispatch }) => {
+    const token = getState().auth.accessToken;
+
+    try {
+      const response = await fetch(`${API_URI}/api/cart`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!response.ok) {
+        if (response.status === 401) {
+          dispatch(removeToken());
+        }
+        throw new Error("Не удалось загрузить содержимое корзины");
+      }
+
+      return await response.json();
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
 export const addProductToCart = createAsyncThunk(
   "cart/addProductToCart",
   async (productData, { getState, rejectWithValue, dispatch }) => {
@@ -110,6 +135,20 @@ export const cartSlice = createSlice({
       })
       .addCase(fetchCart.rejected, (state, action) => {
         state.loadingFetch = false;
+        state.error = action.error;
+      })
+      .addCase(updateCart.pending, (state) => {
+        state.loadingUpdate = true;
+        state.error = null;
+      })
+      .addCase(updateCart.fulfilled, (state, action) => {
+        state.loadingUpdate = false;
+        state.products = action.payload.products;
+        state.totalPrice = action.payload.totalPrice;
+        state.totalCount = action.payload.totalCount;
+      })
+      .addCase(updateCart.rejected, (state, action) => {
+        state.loadingUpdate = false;
         state.error = action.error;
       })
       .addCase(addProductToCart.pending, (state) => {

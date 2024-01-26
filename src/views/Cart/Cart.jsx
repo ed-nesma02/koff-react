@@ -5,7 +5,7 @@ import { CartProducts } from "../../components/CartProducts/CartProducts";
 import { Container } from "../Container/Container";
 import s from "./Cart.module.scss";
 import { useEffect } from "react";
-import { fetchCart } from "../../store/cart/cartSlice";
+import { fetchCart, updateCart } from "../../store/cart/cartSlice";
 import { SkeletonCartProducts } from "../../components/SkeletonCartProducts/SkeletonCartProducts";
 import { SkeletonCartPlace } from "../../components/SkeletonCartPlace/SkeletonCartPlace";
 
@@ -17,20 +17,25 @@ export const Cart = () => {
     loadingAdd,
     loadingFetch,
     totalCount,
+    loadingUpdate,
   } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(fetchCart());
+  }, [dispatch]);
+
+  useEffect(() => {
     if (loadingRemove === false && loadingAdd == false) {
-      dispatch(fetchCart());
+      dispatch(updateCart());
     }
-  }, [loadingRemove, loadingAdd]);
+  }, [dispatch, loadingRemove, loadingAdd]);
 
   return (
     <section className={s.cart}>
       <Container className={s.container}>
         <h1 className={s.title}>Корзина</h1>
-        {!loadingFetch ? (
+        {!loadingFetch || !loadingUpdate ? (
           <CartProducts products={products} />
         ) : (
           <SkeletonCartProducts />

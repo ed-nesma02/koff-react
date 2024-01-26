@@ -11,6 +11,7 @@ import { Card } from "./views/Card/Card";
 import { PageNotFound } from "./components/PageNotFound/PageNotFound";
 import { Favorite } from "./views/Favorite/Favorite";
 import { fetchCart } from "./store/cart/cartSlice";
+import { BreadCrumbs } from "./views/BreadCrumbs/BreadCrumbs";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
         <Header />
         <main>
           <Catalog />
+          <BreadCrumbs />
           <Favorite />
         </main>
         <Footer />
@@ -58,6 +60,7 @@ const router = createBrowserRouter([
         <Header />
         <main>
           <Catalog />
+          <BreadCrumbs />
           <Card />
         </main>
         <Footer />
@@ -71,6 +74,7 @@ const router = createBrowserRouter([
         <Header />
         <main>
           <Catalog />
+          <BreadCrumbs />
           <Goods />
         </main>
         <Footer />
@@ -84,6 +88,7 @@ const router = createBrowserRouter([
         <Header />
         <main>
           <Catalog />
+          <BreadCrumbs />
           <Goods />
         </main>
         <Footer />
