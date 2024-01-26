@@ -6,11 +6,18 @@ import { Container } from "../Container/Container";
 import s from "./Cart.module.scss";
 import { useEffect } from "react";
 import { fetchCart } from "../../store/cart/cartSlice";
+import { SkeletonCartProducts } from "../../components/SkeletonCartProducts/SkeletonCartProducts";
+import { SkeletonCartPlace } from "../../components/SkeletonCartPlace/SkeletonCartPlace";
 
 export const Cart = () => {
-  const { products, totalPrice, loadingRemove, loadingAdd } = useSelector(
-    (state) => state.cart,
-  );
+  const {
+    products,
+    totalPrice,
+    loadingRemove,
+    loadingAdd,
+    loadingFetch,
+    totalCount,
+  } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,8 +30,16 @@ export const Cart = () => {
     <section className={s.cart}>
       <Container className={s.container}>
         <h1 className={s.title}>Корзина</h1>
-        <CartProducts products={products} />
-        <CartPlace totalPrice={totalPrice} />
+        {!loadingFetch ? (
+          <CartProducts products={products} />
+        ) : (
+          <SkeletonCartProducts />
+        )}
+        {!loadingFetch ? (
+          <CartPlace totalPrice={totalPrice} totalCount={totalCount} />
+        ) : (
+          <SkeletonCartPlace />
+        )}
         <CartForm />
       </Container>
     </section>
