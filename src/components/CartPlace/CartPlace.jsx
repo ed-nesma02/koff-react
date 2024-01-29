@@ -10,7 +10,7 @@ export const CartPlace = ({ totalPrice, totalCount }) => (
       <p className={s.placePrice}>{totalPrice.toLocaleString()}&nbsp;₽</p>
     </div>
     <p className={s.placeDelivery}>Доставка 0 ₽</p>
-    <button className={s.placeBtn} type="submit" form="order">
+    <button className={s.placeBtn} type="submit" form="orderForm">
       Оформить заказ
     </button>
   </div>

@@ -12,6 +12,7 @@ import { PageNotFound } from "./components/PageNotFound/PageNotFound";
 import { Favorite } from "./views/Favorite/Favorite";
 import { fetchCart } from "./store/cart/cartSlice";
 import { BreadCrumbs } from "./views/BreadCrumbs/BreadCrumbs";
+import { Order } from "./components/Order/Order";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,18 @@ const router = createBrowserRouter([
           <Catalog />
           <BreadCrumbs />
           <Card />
+        </main>
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/order/:orderId",
+    element: (
+      <>
+        <Header />
+        <main>
+          <Order />
         </main>
         <Footer />
       </>

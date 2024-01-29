@@ -30,6 +30,15 @@ export const Cart = () => {
       dispatch(updateCart());
     }
   }, [dispatch, loadingRemove, loadingAdd]);
+  if (!totalCount) {
+    return (
+      <section className={s.cart}>
+        <Container className={s.container}>
+          <h1 className={s.title}>Корзина пуста</h1>
+        </Container>
+      </section>
+    );
+  }
 
   return (
     <section className={s.cart}>
