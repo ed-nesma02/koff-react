@@ -27,9 +27,11 @@ export const Navigation = () => {
       </Link>
       <Link to="/cart" className={s.link}>
         <span className={s.linkText}>Корзина</span>
-        <span className={s.count} style={{ backgroundColor: `#9200b7` }}>
-          {totalCount}
-        </span>
+        {totalCount > 0 && (
+          <span className={s.count} style={{ backgroundColor: `#9200b7` }}>
+            {totalCount}
+          </span>
+        )}
         <svg
           width="16"
           height="16"
