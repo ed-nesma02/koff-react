@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import s from "./CartForm.module.scss";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { submitCartForm } from "../../store/formCart/formCartSlice";
@@ -12,12 +12,17 @@ export const CartForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    control,
   } = useForm();
   const orderStatus = useSelector((state) => state.formCart);
-
   const onSubmit = (data) => {
     dispatch(submitCartForm(data));
   };
+
+  const deliveryCheck = useWatch({
+    control,
+    name: "deliveryType",
+  });
 
   useEffect(() => {
     if (orderStatus.success) {
@@ -56,15 +61,17 @@ export const CartForm = () => {
           />
           {errors.email && <p className={s.error}>Это поле обязательное</p>}
         </label>
-        <label>
-          <input
-            className={s.input}
-            type="text"
-            placeholder="Адрес доставки"
-            {...register("address", { required: true })}
-          />
-          {errors.address && <p className={s.error}>Это поле обязательное</p>}
-        </label>
+        {deliveryCheck === "delivery" && (
+          <label>
+            <input
+              className={s.input}
+              type="text"
+              placeholder="Адрес доставки"
+              {...register("address", { required: true })}
+            />
+            {errors.address && <p className={s.error}>Это поле обязательное</p>}
+          </label>
+        )}
         <textarea
           className={s.textarea}
           name="comments"
@@ -105,7 +112,7 @@ export const CartForm = () => {
             value="card"
             {...register("paymentType", { required: true })}
           />
-          Картой при получении
+          Картой
         </label>
         <label className={s.radio}>
           <input

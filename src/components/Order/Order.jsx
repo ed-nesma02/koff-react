@@ -4,11 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Container } from "../../views/Container/Container";
 import { useEffect } from "react";
 import { clearOrder, fetchOrder } from "../../store/order/orderSlice";
+import { fetchCart } from "../../store/cart/cartSlice";
 
 export const Order = () => {
   const { orderId } = useParams();
   const dispatch = useDispatch();
   const { orderData, loading, error } = useSelector((state) => state.order);
+
+  useEffect(() => {
+    dispatch(fetchCart());
+  });
 
   useEffect(() => {
     dispatch(fetchOrder(orderId));
@@ -17,8 +22,6 @@ export const Order = () => {
       dispatch(clearOrder());
     };
   }, [dispatch, orderId]);
-
-  console.log(orderData);
 
   if (error) {
     return <div>{`Произошла ошибка ${error.message}`}</div>;
@@ -36,7 +39,7 @@ export const Order = () => {
           <div className={s.header}>
             <h2 className={s.title}>Заказ успешно размещен</h2>
             <p className={s.price}>
-              {orderData.totalPrice.toLocaleString()}&nbsp;₽
+              {parseInt(orderData.totalPrice).toLocaleString()}&nbsp;₽
             </p>
             <p className={s.number}>№&nbsp;{orderData.id}</p>
           </div>
@@ -55,10 +58,12 @@ export const Order = () => {
                 <p className={s.orderList__field}>E-mail</p>
                 <p className={s.orderList__value}>{orderData.email}</p>
               </li>
-              <li className={s.orderList__item}>
-                <p className={s.orderList__field}>Адрес доставки</p>
-                <p className={s.orderList__value}>{orderData.address}</p>
-              </li>
+              {orderData.deliveryType === "delivery" && (
+                <li className={s.orderList__item}>
+                  <p className={s.orderList__field}>Адрес доставки</p>
+                  <p className={s.orderList__value}>{orderData.address}</p>
+                </li>
+              )}
               <li className={s.orderList__item}>
                 <p className={s.orderList__field}>Способ оплаты</p>
                 <p className={s.orderList__value}>
