@@ -50,7 +50,12 @@ export const Cart = () => {
           <SkeletonCartProducts />
         )}
         {!loadingFetch ? (
-          <CartPlace totalPrice={totalPrice} totalCount={totalCount} />
+          <CartPlace
+            totalPrice={totalPrice}
+            totalCount={totalCount}
+            loadingAdd={loadingAdd}
+            loadingUpdate={loadingUpdate}
+          />
         ) : (
           <SkeletonCartPlace />
         )}
