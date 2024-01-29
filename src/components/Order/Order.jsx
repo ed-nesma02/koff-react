@@ -5,6 +5,7 @@ import { Container } from "../../views/Container/Container";
 import { useEffect } from "react";
 import { clearOrder, fetchOrder } from "../../store/order/orderSlice";
 import { fetchCart } from "../../store/cart/cartSlice";
+import { updateSuccessCartForm } from "../../store/formCart/formCartSlice";
 
 export const Order = () => {
   const { orderId } = useParams();
@@ -19,6 +20,7 @@ export const Order = () => {
     dispatch(fetchOrder(orderId));
 
     return () => {
+      dispatch(updateSuccessCartForm());
       dispatch(clearOrder());
     };
   }, [dispatch, orderId]);

@@ -48,9 +48,18 @@ export const CartForm = () => {
             className={s.input}
             type="tel"
             placeholder="Телефон"
-            {...register("phone", { required: true })}
+            {...register("phone", {
+              required: true,
+              // eslint-disable-next-line no-useless-escape
+              pattern: /\+?[0-9\s\-\(\)]+/i,
+            })}
           />
-          {errors.phone && <p className={s.error}>Это поле обязательное</p>}
+          {errors.phone &&
+            (errors.phone.type === "required" ? (
+              <p className={s.error}>Это поле обязательное</p>
+            ) : (
+              <p className={s.error}>Недопустимый номер телефона</p>
+            ))}
         </label>
         <label>
           <input
