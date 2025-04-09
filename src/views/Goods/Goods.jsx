@@ -55,7 +55,9 @@ export const Goods = () => {
                 </li>
               ))}
         </ul>
-        {pagination?.totalPages > 1 && <Pagination pagination={pagination} />}
+        {category && pagination?.totalPages > 1 && (
+          <Pagination pagination={pagination} />
+        )}
       </Container>
     </section>
   );
